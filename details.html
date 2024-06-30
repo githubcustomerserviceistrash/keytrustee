@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Key Trustee Quick Start Guide</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+      @font-face {
+        font-family: "HyliaSerifBeta";
+        src: url("assets/webfonts/HyliaSerifBeta-Regular.otf")
+          format("opentype");
+      }
+
+      .logo-svg {
+        width: 100%;
+        height: auto;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      .logo-text {
+        font-family: "HyliaSerifBeta", sans-serif;
+        font-size: 64px;
+        fill: url(#gold-gradient);
+        stroke: black;
+        stroke-width: 3px;
+        paint-order: stroke fill;
+      }
+
+      .content {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 2em;
+      }
+
+      .steps {
+        margin-bottom: 2em;
+      }
+
+      .steps h3 {
+        margin-bottom: 0.5em;
+      }
+
+      .steps p {
+        margin: 0.5em 0 1em;
+      }
+
+      .placeholder {
+        width: 100%;
+        height: 200px;
+        background-color: #ccc;
+        text-align: center;
+        line-height: 200px;
+        color: #555;
+        margin-bottom: 1em;
+      }
+
+      .centered {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+  <body class="homepage is-preload">
+    <div id="page-wrapper">
+      <!-- Header -->
+      <section id="header" class="header-background">
+        <!-- Logo -->
+        <svg
+          viewBox="0 0 500 100"
+          preserveAspectRatio="xMinYMin meet"
+          class="logo-svg"
+        >
+          <!-- Define the golden gradient -->
+          <defs>
+            <linearGradient
+              id="gold-gradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" style="stop-color: #ffd700; stop-opacity: 1" />
+              <stop
+                offset="100%"
+                style="stop-color: #a86d00; stop-opacity: 1"
+              />
+            </linearGradient>
+          </defs>
+
+          <!-- Text with custom font, black outline, and golden gradient -->
+          <text x="75" y="75" class="logo-text">Key Trustee</text>
+        </svg>
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12" style="text-align: left">
+              <h1 style="text-align: center">How It Works</h1>
+              <hr />
+              <p>
+                Key Trustee is your secure gateway to artificial intelligence
+                APIs. We act as a trusted intermediary, allowing applications to
+                safely use personal API keys without ever exposing sensitive
+                information.
+              </p>
+              <p>
+                <strong>In a nutshell:</strong> We securely store and manage
+                personal API keys. When an app needs to make an API call, Key
+                Trustee steps in. We verify the app's request then use the
+                user's API keys to make the call on the their behalf and send
+                the results back to the application. Private keys stay protected
+                and the user maintains full control.
+              </p>
+              <img
+                src="images/cartoon_diagram.webp"
+                alt="Key Trustee flow diagram"
+                class="centered"
+                style="max-width: 80%; margin-bottom: 2em; margin-top: 2em"
+              />
+              <h2 style="margin-bottom: 1em">Who Benefits from Key Trustee?</h2>
+              <p>
+                <strong>App Developers:</strong> Focus on building great apps
+                without the headache of managing sensitive API credentials or
+                handling usage fees. Key Trustee takes care of the security and
+                billing complexities.
+              </p>
+              <p>
+                <strong>Users:</strong> Gain unprecedented visibility into how
+                AI is used in their apps and maintain control over data
+                processing while enjoying the convenience of a single payment
+                setup across all Key Trustee-enabled applications.
+              </p>
+              <h2 style="margin-bottom: 1em">
+                Ready to Secure Your API Interactions?
+              </h2>
+              <p>
+                Experience the power of Key Trustee today! Sign up now to unlock
+                a world of secure, efficient, and worry-free API interactions.
+                Have questions? Our support team is ready to help you harness
+                the full potential of your applications while keeping your data
+                safe.
+              </p>
+              <a
+                href="setup.html"
+                class="button large centered"
+                style="max-width: 50%; margin-top: 2em"
+                >Get Started</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <section id="footer">
+        <div class="container">
+          <!-- Copyright -->
+          <div id="copyright">
+            &copy; 2024 Sibylline Software. All rights reserved.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

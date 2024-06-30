@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Key Trustee</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+      @font-face {
+        font-family: "HyliaSerifBeta";
+        src: url("assets/webfonts/HyliaSerifBeta-Regular.otf")
+          format("opentype");
+      }
+
+      .logo-svg {
+        width: 100%;
+        height: auto;
+        max-width: 960px; /* Set the maximum width */
+        margin: 0 auto; /* Center the logo horizontally */
+      }
+
+      .logo-text {
+        font-family: "HyliaSerifBeta", sans-serif;
+        font-size: 64px; /* Adjust size as needed */
+        fill: url(#gold-gradient);
+        stroke: black;
+        stroke-width: 3px;
+        paint-order: stroke fill;
+      }
+    </style>
+  </head>
+  <body class="homepage is-preload">
+    <div id="page-wrapper">
+      <!-- Header -->
+      <section id="header" style="padding-top: 0; padding-bottom: 2em">
+        <!-- Logo -->
+
+        <!-- Banner -->
+        <section id="banner" style="margin: 0; padding: 2em; padding-top: 0">
+          <svg
+            viewBox="0 0 500 100"
+            preserveAspectRatio="xMinYMin meet"
+            class="logo-svg"
+          >
+            <!-- Define the golden gradient -->
+            <defs>
+              <linearGradient
+                id="gold-gradient"
+                x1="0%"
+                y1="0%"
+                x2="0%"
+                y2="100%"
+              >
+                <stop
+                  offset="0%"
+                  style="stop-color: #ffd700; stop-opacity: 1"
+                />
+                <stop
+                  offset="100%"
+                  style="stop-color: #7d5100; stop-opacity: 1"
+                />
+              </linearGradient>
+            </defs>
+
+            <!-- Text with custom font, black outline, and golden gradient -->
+            <text x="75" y="75" class="logo-text">Key Trustee</text>
+          </svg>
+          <div>
+            <img
+              src="images/keytrustee_logo.webp"
+              alt="Key Trustee banner"
+              style="max-width: 80%"
+            />
+          </div>
+        </section>
+
+        <!-- Intro -->
+        <section id="intro" class="container">
+          <div class="row">
+            <div class="col-4 col-12-medium">
+              <section class="first">
+                <img src="images/chest.webp" alt="treasure chest" />
+                <header>
+                  <h2>Save Money</h2>
+                </header>
+                <p style="font-weight: 500">
+                  Reduce your AI expenses to zero by letting your users pay for
+                  their API usage directly.
+                </p>
+              </section>
+            </div>
+            <div class="col-4 col-12-medium">
+              <section class="middle">
+                <img src="images/crystal.webp" alt="crystal ball" />
+                <header>
+                  <h2>Build Trust</h2>
+                </header>
+                <p style="font-weight: 500">
+                  Give users visibility into how AI is used in their
+                  applications while saving them from subscription fatigue.
+                </p>
+              </section>
+            </div>
+            <div class="col-4 col-12-medium">
+              <section class="last">
+                <img src="images/gear.webp" alt="gear" />
+                <header>
+                  <h2>Simplify Integration</h2>
+                </header>
+                <p style="font-weight: 500">
+                  Use the best model for your prompts without changing your
+                  code.
+                </p>
+              </section>
+            </div>
+          </div>
+          <footer>
+            <h2 style="margin-bottom: 1em">No cost, no catch!</h2>
+            <ul class="actions" style="margin-bottom: 0">
+              <li><a href="setup.html" class="button large">Get Started</a></li>
+              <li><a href="details.html" class="button alt large">Learn More</a></li>
+            </ul>
+          </footer>
+        </section>
+      </section>
+
+      <!-- Footer -->
+      <section id="footer">
+        <div class="container">
+          <!-- Copyright -->
+          <div id="copyright">
+            &copy; 2024 Sibylline Software. All rights reserved.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

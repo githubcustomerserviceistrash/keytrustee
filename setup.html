@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Key Trustee Quick Start Guide</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+      @font-face {
+        font-family: "HyliaSerifBeta";
+        src: url("assets/webfonts/HyliaSerifBeta-Regular.otf")
+          format("opentype");
+      }
+
+      .logo-svg {
+        width: 100%;
+        height: auto;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      .logo-text {
+        font-family: "HyliaSerifBeta", sans-serif;
+        font-size: 64px;
+        fill: url(#gold-gradient);
+        stroke: black;
+        stroke-width: 3px;
+        paint-order: stroke fill;
+      }
+
+      .content {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 2em;
+      }
+
+      .steps {
+        margin-bottom: 2em;
+      }
+
+      .steps h3 {
+        margin-bottom: 0.5em;
+      }
+
+      .steps p {
+        margin: 0.5em 0 1em;
+      }
+
+      .placeholder {
+        width: 100%;
+        height: 200px;
+        background-color: #ccc;
+        text-align: center;
+        line-height: 200px;
+        color: #555;
+        margin-bottom: 1em;
+      }
+    </style>
+  </head>
+  <body class="homepage is-preload">
+    <div id="page-wrapper">
+      <!-- Header -->
+      <section id="header" class="header-background">
+        <!-- Logo -->
+        <svg
+          viewBox="0 0 500 100"
+          preserveAspectRatio="xMinYMin meet"
+          class="logo-svg"
+        >
+          <!-- Define the golden gradient -->
+          <defs>
+            <linearGradient
+              id="gold-gradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" style="stop-color: #ffd700; stop-opacity: 1" />
+              <stop
+                offset="100%"
+                style="stop-color: #a86d00; stop-opacity: 1"
+              />
+            </linearGradient>
+          </defs>
+
+          <!-- Text with custom font, black outline, and golden gradient -->
+          <text x="75" y="75" class="logo-text">Key Trustee</text>
+        </svg>
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12" style="text-align: left">
+              <h1 style="text-align: center">Quick Start</h1>
+              <hr />
+              <div class="steps">
+                <p>First, install the app.</p>
+                <ul>
+                  <li><a href="#">Android</a></li>
+                  <li><a href="#">iOS</a></li>
+                </ul>
+              </div>
+              <div class="steps">
+                <h3>For Application Integrators:</h3>
+                <p>
+                  1. Log into the application and create an entry on the
+                  Applications screen with your application's name, allowed
+                  hosts and OAuth
+                  <em>CLIENT_ID</em>.
+                </p>
+                <p>
+                  2. If your application uses a service with an OpenAI
+                  compatible interface, just update your code to use
+                  <em>api.keytrustee.org</em> in place of the current API URL.
+                  If your application is using a SDK or non-OpenAI compatible
+                  endpoint, you'll need to convert it to a http request using
+                  the OpenAI API interface with that URL.
+                </p>
+                <p>
+                  3. Whenever you need to use an API, just pass the user's OAuth
+                  token in the authorization header instead of your API key.
+                  Optionally, you can update the <em>model</em> parameter to an
+                  ordered preference array so that a good alternate model can be
+                  selected when a user doesn't have access to your preferred
+                  provider - otherwise you will get whatever default model the
+                  user has selected.
+                </p>
+              </div>
+              <div class="steps">
+                <h3>For Users:</h3>
+                <p>
+                  1. Log into the app with your primary identity provider. If
+                  you use multiple identity providers, visit the identites page
+                  and add them to your account to ensure your keys are available
+                  regardless of which provider you log into an application with.
+                </p>
+                <p>
+                  2. Add your credit card information. Key Trustee doesn't
+                  charge any fees, however almost all API providers require
+                  payment information, and we will supply the card you provide
+                  to providers automatically on your behalf.
+                </p>
+                <p>
+                  3. Go to the provider configuration screen and click the
+                  button for any providers you would like automatically
+                  configured for you and made available to applications.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <section id="footer">
+        <div class="container">
+          <!-- Copyright -->
+          <div id="copyright">
+            &copy; 2024 Sibylline Software. All rights reserved.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
