@@ -1,0 +1,3 @@
+Access-Control-Allow-Origin: https://app.keytrustee.org
+Access-Control-Allow-Methods: GET
+Access-Control-Allow-Headers: Content-Type
