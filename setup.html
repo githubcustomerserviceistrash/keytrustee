@@ -117,7 +117,7 @@
                 <ol>
                   <li>
                     Log into
-                    <a href="https://keyring-api-79243566486.us-central1.run.app/">Key Trustee</a> and
+                    <a href="https://app.keytrustee.org/">Key Trustee</a> and
                     create an entry on the Applications screen in the developer
                     section with your application's name, allowed hosts, and
                     OAuth client IDs, and set the application to active. Record
@@ -125,7 +125,7 @@
                   </li>
                   <li>
                     Update your service to use the Key Trustee API endpoint:
-                    <br /><em>https://keyring-api-79243566486.us-central1.run.app/api/completions</em>
+                    <br /><em>https://app.keytrustee.org/api/completions</em>
                   </li>
                   <li>
                     Add the following headers to your requests:
@@ -162,7 +162,7 @@
                     <pre><code class="language-python">
 import requests
 
-url = "https://keyring-api-79243566486.us-central1.run.app/"
+url = "https://app.keytrustee.org/"
 headers = {
     "Authorization": f"Bearer {idToken}",
     "X-Auth-Token": authToken,
@@ -192,7 +192,7 @@ print(response.json())
 import openai
 
 # Set up the OpenAI SDK to use the custom API endpoint
-openai.api_base = "https://keyring-api-79243566486.us-central1.run.app/api"
+openai.api_base = "https://app.keytrustee.org/api"
 openai.api_key = None  # Not required as we use OAuth tokens
 headers = {
     "Authorization": f"Bearer {idToken}",
@@ -221,7 +221,7 @@ for chunk in response:
                 <div class="toggle-container">
                   <div id="javascript-code" class="toggle-content">
                     <pre><code class="language-javascript">
-const response = await fetch("https://keyring-api-79243566486.us-central1.run.app/api/completions", {
+const response = await fetch("https://app.keytrustee.org/api/completions", {
   method: "POST",
   headers: {
     Authorization: `Bearer ${idToken}`,
