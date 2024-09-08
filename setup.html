@@ -106,22 +106,22 @@
               <h1 style="text-align: center">Quick Start</h1>
               <hr />
               <div class="steps">
-                <!-- <p>First, install the app on your device:</p>
-                <ul>
-                  <li><a href="#">Download for Android</a></li>
-                  <li><a href="#">Download for iOS</a></li>
-                </ul> -->
-              </div>
-              <div class="steps">
                 <h3>For Application Integrators:</h3>
+                <div>
+                  We've built a
+                  <a href="https://github.com/sibyllinesoft/keytrustee-example"
+                    >demo project</a
+                  >
+                  you can use to see a working Key Trustee integration.
+                </div>
                 <ol>
                   <li>
                     Log into
                     <a href="https://app.keytrustee.org/">Key Trustee</a> and
-                    create an entry on the Applications screen in the developer
-                    section with your application's name, allowed hosts, and
-                    OAuth client IDs, and set the application to active. Record
-                    the application ID for later use.
+                    create an application on the Applications screen in the
+                    developer section with your application's name, allowed ip
+                    addresses and OAuth client IDs then set the application to
+                    active. Record the application ID for later use.
                   </li>
                   <li>
                     Update your service to use the Key Trustee API endpoint:
@@ -157,12 +157,37 @@
                       >http://app.keytrustee.org?application_id={your_application_id}</em
                     >
                   </li>
+                  <li>
+                    Optional: we cache token verifications for 2 hours, so if
+                    your application has long lasting sessions, you will need to
+                    periodically retrieve new tokens for the user. There are two
+                    ways to deal with this:
+                    <ol>
+                      <li>
+                        You can use a refresh token to periodically generate new
+                        id and access tokens. This method is less secure for
+                        users and shouldn't be used unless you already have a
+                        reason for refresh tokens.
+                      </li>
+                      <li>
+                        We send a 401 "Expired Token" response, you can catch
+                        that in the client and pop up a small modal dialog
+                        prompting the user to re-authenticate in response. That
+                        modal prompt can trigger an OAuth popup, enabling you to
+                        get new tokens without losing application state.
+                      </li>
+                    </ol>
+
+                    response
+                  </li>
                 </ol>
+
+                <!-- Non-Streaming Python Example -->
                 <div
                   class="toggle-section"
                   onclick="toggleContent('python-code')"
                 >
-                  <strong>Show Python Example (requests)</strong>
+                  <strong>Show Python Example (Non-Streaming)</strong>
                 </div>
                 <div class="toggle-container">
                   <div id="python-code" class="toggle-content">
@@ -173,57 +198,27 @@ url = "https://app.keytrustee.org/"
 headers = {
     "Authorization": f"Bearer {idToken}",
     "X-Auth-Token": authToken,
-    "X-KeyTrustee-Application-Id": 2,  # Replace with your actual application ID
+    "X-KeyTrustee-Application-Id": 123,  # Replace with your actual application ID
     "Content-Type": "application/json"
 }
 data = {
     "messages": [{"role": "user", "content": inputText}],
     "model": "gpt-4o-mini-2024-07-18",
-    "stream": streaming
+    "stream": False
 }
 
 response = requests.post(url, headers=headers, json=data)
 print(response.json())
-                  </code></pre>
+                    </code></pre>
                   </div>
                 </div>
-                <div
-                  class="toggle-section"
-                  onclick="toggleContent('openai-python-code')"
-                >
-                  <strong>Show Python Example (OpenAI SDK)</strong>
-                </div>
-                <div class="toggle-container">
-                  <div id="openai-python-code" class="toggle-content">
-                    <pre><code class="language-python">
-import openai
 
-# Set up the OpenAI SDK to use the custom API endpoint
-openai.api_base = "https://app.keytrustee.org/api"
-openai.api_key = None  # Not required as we use OAuth tokens
-headers = {
-    "Authorization": f"Bearer {idToken}",
-    "X-Auth-Token": authToken,
-    "X-KeyTrustee-Application-Id": 2  # Replace with your actual application ID
-}
-
-response = openai.ChatCompletion.create(
-    model="gpt-4o-mini-2024-07-18",
-    messages=[{"role": "user", "content": inputText}],
-    headers=headers,
-    stream=streaming
-)
-
-for chunk in response:
-    print(chunk)
-                  </code></pre>
-                  </div>
-                </div>
+                <!-- Non-Streaming JavaScript Example -->
                 <div
                   class="toggle-section"
                   onclick="toggleContent('javascript-code')"
                 >
-                  <strong>Show JavaScript Example</strong>
+                  <strong>Show JavaScript Example (Non-Streaming)</strong>
                 </div>
                 <div class="toggle-container">
                   <div id="javascript-code" class="toggle-content">
@@ -239,19 +234,141 @@ const response = await fetch("https://app.keytrustee.org/api/completions", {
   body: JSON.stringify({
     messages: [{ role: "user", content: inputText }],
     model: "gpt-4o-mini-2024-07-18",
-    stream: streaming,
+    stream: false,
   }),
 });
 
 const result = await response.json();
 console.log(result);
-                  </code></pre>
-                    We've built a
-                    <a
-                      href="https://github.com/sibyllinesoft/keytrustee-example"
-                      >demo project</a
-                    >
-                    you can use to see a working Key Trustee integration.
+                    </code></pre>
+                  </div>
+                </div>
+
+                <!-- Streaming Python Example -->
+                <div
+                  class="toggle-section"
+                  onclick="toggleContent('python-streaming-code')"
+                >
+                  <strong>Show Python Example (Streaming)</strong>
+                </div>
+                <div class="toggle-container">
+                  <div id="python-streaming-code" class="toggle-content">
+                    <pre><code class="language-python">
+import requests
+from time import sleep
+
+url = "https://app.keytrustee.org/api/completions"
+headers = {
+    "Authorization": f"Bearer {idToken}",
+    "X-Auth-Token": authToken,
+    "X-KeyTrustee-Application-Id": 123,  # Replace with your actual application ID
+    "Content-Type": "application/json"
+}
+data = {
+    "messages": [{"role": "user", "content": inputText}],
+    "model": "gpt-4o-mini-2024-07-18",
+    "stream": True
+}
+
+with requests.post(url, headers=headers, json=data, stream=True) as response:
+    if response.status_code != 200:
+        raise Exception(f"HTTP error! status: {response.status_code}")
+    buffer = ""
+    for chunk in response.iter_content(chunk_size=None):
+        if chunk:
+            buffer += chunk.decode('utf-8')
+            while "}{" in buffer:
+                json_str, buffer = buffer.split("}{", 1)
+                json_str += "}"
+                try:
+                    chunk_data = json.loads(json_str)
+                    if "choices" in chunk_data:
+                        content = chunk_data['choices'][0]['delta'].get('content', '')
+                        print(content, end='', flush=True)
+                except Exception as e:
+                    print(f"Error parsing JSON: {e}")
+    if buffer:
+        chunk_data = json.loads(buffer)
+        content = chunk_data['choices'][0]['delta'].get('content', '')
+        print(content)
+                    </code></pre>
+                  </div>
+                </div>
+
+                <!-- Streaming JavaScript Example -->
+                <div
+                  class="toggle-section"
+                  onclick="toggleContent('javascript-streaming-code')"
+                >
+                  <strong>Show JavaScript Example (Streaming)</strong>
+                </div>
+                <div class="toggle-container">
+                  <div id="javascript-streaming-code" class="toggle-content">
+                    <pre><code class="language-javascript">
+async function startChatStreaming() {
+  const inputText = document.getElementById("inputText").value;
+  const outputText = document.getElementById("outputText");
+
+  const idToken = localStorage.getItem("idToken");
+  const authToken = localStorage.getItem("authToken");
+
+  const response = await fetch("https://app.keytrustee.org/api/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${idToken}`,
+      "X-Auth-Token": authToken,
+      "X-KeyTrustee-Application-Id": "123",  // Replace with your actual application ID
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      messages: [{ role: "user", content: inputText }],
+      model: "gpt-4o-mini-2024-07-18",
+      stream: true,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder("utf-8");
+  let buffer = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+    
+    let boundary;
+    while ((boundary = buffer.indexOf("}{")) !== -1) {
+      const jsonString = buffer.substring(0, boundary + 1).trim();
+      buffer = buffer.slice(boundary + 1);
+
+      try {
+        const chunk = JSON.parse(jsonString);
+        if (chunk.choices && chunk.choices[0] && chunk.choices[0].delta.content) {
+          outputText.textContent += chunk.choices[0].delta.content;
+        }
+      } catch (e) {
+        console.error("Error parsing JSON:", e);
+      }
+    }
+  }
+  
+  if (buffer.length > 0) {
+    try {
+      const chunk = JSON.parse(buffer.trim());
+      if (chunk.choices[0].delta.content) {
+        outputText.textContent += chunk.choices[0].delta.content;
+      }
+    } catch (e) {
+      console.error("Error parsing JSON:", e);
+    }
+  }
+}
+                    </code></pre>
                   </div>
                 </div>
               </div>
@@ -259,26 +376,40 @@ console.log(result);
                 <h3>For Users:</h3>
                 <ol>
                   <li>
-                    Log into the app with your primary identity provider. Ensure
-                    your keys are available by adding any additional identity
-                    providers on the Identities page.
+                    Log into
+                    <a href="https://app.keytrustee.org/">Key Trustee</a> with
+                    your primary identity provider.
                   </li>
                   <li>
-                    Optionally, add your credit card information to purchase
-                    credits. Without credits, you'll need API keys for any AI
-                    services.
+                    Add your credit card information to purchase credits. Adding
+                    credits is optional, but without credits you'll need API
+                    keys to use AI services, and you'll need to override the
+                    default model for your applications to ensure they use a
+                    configured API.
                   </li>
                   <li>
                     Add keys for the services you wish to use on the Provider
                     screen.
                   </li>
                   <li>
+                    Make sure your keys are always available in your
+                    applicationos by adding any additional identity providers on
+                    the Identities page. If you don't do this, applications that
+                    don't support authentication with your primary identity
+                    provider won't be able to use AI.
+                  </li>
+                  <li>
                     Enable AI in your applications on the Application screen of
-                    the user section. Make sure to select a model from a
-                    provider with added keys for your applications if you
-                    haven't added credits.
+                    the user section. If you didn't add credits, make sure to
+                    select a model from a provider that you've configured an API
+                    key with.
                   </li>
                 </ol>
+                Support is available via
+                <a
+                  href="https://discord.com/channels/1282344086430421060/1282344140818087978"
+                  >Discord</a
+                >.
               </div>
             </div>
           </div>
